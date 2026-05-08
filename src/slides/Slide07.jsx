@@ -216,18 +216,6 @@ export default function Slide07() {
       }}>
         {/* Left text */}
         <div style={{ flex: '0 0 auto', maxWidth: 320 }}>
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            style={{
-              display: 'inline-flex', gap: 8,
-              background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.25)',
-              borderRadius: 100, padding: '5px 14px', marginBottom: 20,
-            }}
-          >
-            <span style={{ color: '#A855F7', fontSize: 11, fontFamily: 'var(--font-body)', letterSpacing: '0.1em', fontWeight: 500 }}>SLIDE 06</span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -328,11 +316,7 @@ export default function Slide07() {
           transition={{ delay: 0.2, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
           style={{ flex: 1, height: '74vh', maxHeight: 500, minHeight: 360 }}
         >
-          <motion.div
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-            style={{ width: '100%', height: '100%' }}
-          >
+          <div style={{ width: '100%', height: '100%' }}>
             <div style={{
               width: '100%', height: '100%',
               borderRadius: 12,
@@ -342,7 +326,7 @@ export default function Slide07() {
             }}>
               <DesktopWorkspace />
             </div>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </div>

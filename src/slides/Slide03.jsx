@@ -80,19 +80,6 @@ export default function Slide03() {
 
       {/* Center — hero text */}
       <div style={{ position: 'relative', zIndex: 20, textAlign: 'center' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.25)',
-            borderRadius: 100, padding: '5px 14px', marginBottom: 24,
-          }}
-        >
-          <span style={{ color: '#A855F7', fontSize: 11, fontFamily: 'var(--font-body)', letterSpacing: '0.1em', fontWeight: 500 }}>SLIDE 02</span>
-        </motion.div>
-
         <motion.h1
           initial={{ opacity: 0, y: 40, filter: 'blur(16px)', scale: 0.9 }}
           animate={{ opacity: 1, y: 0, filter: 'blur(0px)', scale: 1 }}

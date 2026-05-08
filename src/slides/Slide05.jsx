@@ -197,18 +197,6 @@ export default function Slide05() {
       }}>
         {/* Left text */}
         <div style={{ flex: '0 0 300px', display: 'flex', flexDirection: 'column' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            style={{
-              display: 'inline-flex', gap: 8, alignSelf: 'flex-start',
-              background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.25)',
-              borderRadius: 100, padding: '5px 14px', marginBottom: 20,
-            }}
-          >
-            <span style={{ color: '#A855F7', fontSize: 11, fontFamily: 'var(--font-body)', letterSpacing: '0.1em', fontWeight: 500 }}>SLIDE 04</span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}

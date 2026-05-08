@@ -192,23 +192,6 @@ export default function Slide10() {
       }}>
         {/* Left text */}
         <div style={{ flex: '0 0 auto', maxWidth: 360 }}>
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            style={{
-              display: 'inline-flex', gap: 8,
-              background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.3)',
-              borderRadius: 100, padding: '5px 14px', marginBottom: 20,
-            }}
-          >
-            <motion.div
-              style={{ width: 6, height: 6, borderRadius: '50%', background: '#EF4444' }}
-              animate={{ opacity: [1, 0.3, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
-            <span style={{ color: '#EF4444', fontSize: 11, fontFamily: 'var(--font-body)', letterSpacing: '0.1em', fontWeight: 500 }}>SLIDE 09 · ERROR COMÚN</span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -311,11 +294,7 @@ export default function Slide10() {
             filter: 'blur(20px)',
           }} />
 
-          <motion.div
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-            style={{ position: 'relative' }}
-          >
+          <div style={{ position: 'relative' }}>
             {/* Phone shell */}
             <motion.div
               animate={{
@@ -391,7 +370,7 @@ export default function Slide10() {
                 {showCorrect ? '✓ Correctamente adaptado' : '✕ Desktop copiado en Mobile'}
               </span>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>

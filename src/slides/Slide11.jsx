@@ -22,11 +22,7 @@ function MinimalDevice({ type, delay }) {
       transition={{ delay: delay + 1.4, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}
     >
-      <motion.div
-        animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 5 + delay * 2, repeat: Infinity, ease: 'easeInOut', delay }}
-        style={{ cursor: 'default' }}
-      >
+      <div style={{ cursor: 'default' }}>
         <svg width={s.w} height={s.h} viewBox={`0 0 ${s.w} ${s.h}`}>
           <rect
             x="1" y="1" width={s.w - 2} height={s.h - 2}
@@ -57,7 +53,7 @@ function MinimalDevice({ type, delay }) {
             <rect x={s.w / 2 - 5} y={s.h - 6} width="10" height="2.5" rx="1.25" fill="rgba(168,85,247,0.4)" />
           )}
         </svg>
-      </motion.div>
+      </div>
       <span style={{
         fontFamily: 'var(--font-body)', fontSize: 10, color: 'rgba(255,255,255,0.3)',
         fontWeight: 500, letterSpacing: '0.06em',
@@ -150,25 +146,6 @@ export default function Slide11() {
         gap: 40,
       }}>
         {/* Badge */}
-        <motion.div
-          custom={0}
-          variants={itemVariants}
-          initial="hidden"
-          animate="visible"
-          style={{
-            display: 'inline-flex', gap: 8,
-            background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.25)',
-            borderRadius: 100, padding: '5px 18px',
-          }}
-        >
-          <motion.div
-            style={{ width: 6, height: 6, borderRadius: '50%', background: '#A855F7' }}
-            animate={{ opacity: [1, 0.3, 1], scale: [1, 1.4, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-          <span style={{ color: '#A855F7', fontSize: 11, fontFamily: 'var(--font-body)', letterSpacing: '0.12em', fontWeight: 500 }}>SLIDE 10 · CONCLUSIÓN</span>
-        </motion.div>
-
         {/* Main statement */}
         <div style={{ textAlign: 'center', maxWidth: 900 }}>
           <motion.h1
@@ -219,16 +196,12 @@ export default function Slide11() {
           {['Consistencia', 'Adaptabilidad', 'Experiencia'].map((word, i) => (
             <div key={word} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               {i > 0 && <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(255,255,255,0.2)' }} />}
-              <motion.span
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 3, repeat: Infinity, delay: i * 1, ease: 'easeInOut' }}
-                style={{
-                  fontFamily: 'var(--font-title)', fontSize: 'clamp(14px, 1.8vw, 22px)',
-                  fontWeight: 600,
-                  color: i === 0 ? '#C084FC' : i === 1 ? '#67E8F9' : '#A855F7',
-                  letterSpacing: '-0.01em',
-                }}
-              >{word}</motion.span>
+              <span style={{
+                fontFamily: 'var(--font-title)', fontSize: 'clamp(14px, 1.8vw, 22px)',
+                fontWeight: 600,
+                color: i === 0 ? '#C084FC' : i === 1 ? '#67E8F9' : '#A855F7',
+                letterSpacing: '-0.01em',
+              }}>{word}</span>
             </div>
           ))}
         </motion.div>
@@ -252,21 +225,17 @@ export default function Slide11() {
           <MinimalDevice type="mobile" delay={0.4} />
         </motion.div>
 
-        {/* Shared glow pulse */}
-        <motion.div
-          style={{
-            position: 'absolute',
-            width: '50%', height: '40%',
-            top: '30%', left: '25%',
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(124,58,237,0.12), transparent 70%)',
-            filter: 'blur(40px)',
-            pointerEvents: 'none',
-            zIndex: 0,
-          }}
-          animate={{ scale: [1, 1.1, 1], opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        />
+        {/* Shared glow */}
+        <div style={{
+          position: 'absolute',
+          width: '50%', height: '40%',
+          top: '30%', left: '25%',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(124,58,237,0.12), transparent 70%)',
+          filter: 'blur(40px)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }} />
       </div>
     </div>
   )

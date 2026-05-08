@@ -261,18 +261,6 @@ export default function Slide08() {
       }}>
         {/* Header */}
         <div style={{ textAlign: 'center' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            style={{
-              display: 'inline-flex', gap: 8,
-              background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.25)',
-              borderRadius: 100, padding: '5px 14px', marginBottom: 16,
-            }}
-          >
-            <span style={{ color: '#A855F7', fontSize: 11, fontFamily: 'var(--font-body)', letterSpacing: '0.1em', fontWeight: 500 }}>SLIDE 07 · EL MOMENTO WOW</span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}

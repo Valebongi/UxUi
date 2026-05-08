@@ -175,18 +175,6 @@ export default function Slide06() {
       }}>
         {/* Left text */}
         <div style={{ flex: '0 0 auto', maxWidth: 360 }}>
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            style={{
-              display: 'inline-flex', gap: 8,
-              background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.25)',
-              borderRadius: 100, padding: '5px 14px', marginBottom: 20,
-            }}
-          >
-            <span style={{ color: '#A855F7', fontSize: 11, fontFamily: 'var(--font-body)', letterSpacing: '0.1em', fontWeight: 500 }}>SLIDE 05</span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -295,11 +283,7 @@ export default function Slide06() {
               pointerEvents: 'none',
             }} />
 
-            <motion.div
-              animate={{ y: [0, -12, 0], rotateZ: [-1, 0, 1, 0] }}
-              transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-              style={{ position: 'relative' }}
-            >
+            <div style={{ position: 'relative' }}>
               {/* Phone shell */}
               <div style={{
                 width: 240, height: 500,
@@ -332,7 +316,7 @@ export default function Slide06() {
                 position: 'absolute', left: -3, top: 116, width: 3, height: 28,
                 background: 'rgba(255,255,255,0.15)', borderRadius: '2px 0 0 2px',
               }} />
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>

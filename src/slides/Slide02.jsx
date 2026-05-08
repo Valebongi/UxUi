@@ -235,19 +235,6 @@ export default function Slide02() {
           padding: '32px 28px',
           border: '1px solid rgba(255,255,255,0.05)',
         }}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: 'rgba(34,211,238,0.1)', border: '1px solid rgba(34,211,238,0.25)',
-              borderRadius: 100, padding: '5px 14px', marginBottom: 24,
-            }}
-          >
-            <span style={{ color: '#22D3EE', fontSize: 11, fontFamily: 'var(--font-body)', letterSpacing: '0.1em', fontWeight: 500 }}>SLIDE 01</span>
-          </motion.div>
-
           <motion.h2
             initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}

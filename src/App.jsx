@@ -21,28 +21,22 @@ const TOTAL = slides.length
 
 const slideVariants = {
   enter: (dir) => ({
-    y: dir > 0 ? '100%' : '-100%',
+    y: dir > 0 ? '5%' : '-5%',
     opacity: 0,
-    filter: 'blur(12px)',
-    scale: 0.97,
   }),
   center: {
     y: 0,
     opacity: 1,
-    filter: 'blur(0px)',
-    scale: 1,
   },
   exit: (dir) => ({
-    y: dir > 0 ? '-60%' : '60%',
+    y: dir > 0 ? '-5%' : '5%',
     opacity: 0,
-    filter: 'blur(16px)',
-    scale: 0.95,
   }),
 }
 
 const slideTransition = {
-  duration: 0.9,
-  ease: [0.43, 0.13, 0.23, 0.96],
+  duration: 0.45,
+  ease: [0.25, 0.1, 0.25, 1],
 }
 
 export default function App() {
@@ -57,7 +51,7 @@ export default function App() {
       if (next === c) { setTimeout(() => setLocked(false), 200); return [c, newDir] }
       return [next, newDir]
     })
-    setTimeout(() => setLocked(false), 1100)
+    setTimeout(() => setLocked(false), 550)
   }, [locked])
 
   useEffect(() => {
@@ -95,7 +89,7 @@ export default function App() {
           animate="center"
           exit="exit"
           transition={slideTransition}
-          style={{ position: 'absolute', inset: 0 }}
+          style={{ position: 'absolute', inset: 0, willChange: 'transform, opacity' }}
         >
           <SlideComponent />
         </motion.div>
@@ -111,7 +105,7 @@ export default function App() {
               setLocked(true)
               const d = i > current ? 1 : -1
               setPage([i, d])
-              setTimeout(() => setLocked(false), 1100)
+              setTimeout(() => setLocked(false), 550)
             }}
           />
         ))}

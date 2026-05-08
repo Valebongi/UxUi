@@ -7,15 +7,11 @@ const glows = [
   { color: '#A855F7', x: '30%', y: '60%', size: '40vw', opacity: 0.10, duration: 30, delay: 8 },
 ]
 
-function FloatingDevice({ style, children, delay = 0 }) {
+function FloatingDevice({ style, children }) {
   return (
-    <motion.div
-      style={{ position: 'absolute', ...style }}
-      animate={{ y: [0, -14, 0], rotate: [0, 1, -1, 0] }}
-      transition={{ duration: 7 + delay, repeat: Infinity, ease: 'easeInOut', delay }}
-    >
+    <div style={{ position: 'absolute', ...style }}>
       {children}
-    </motion.div>
+    </div>
   )
 }
 
