@@ -45,7 +45,6 @@ function PrincipleCard({ icon, title, color, colorAlt, items, desc, delay }) {
       initial={{ opacity: 0, y: 50, filter: 'blur(16px)' }}
       animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
       transition={{ delay, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-      whileHover={{ scale: 1.03, y: -6 }}
       style={{
         flex: 1,
         background: 'rgba(255,255,255,0.05)',
@@ -77,19 +76,15 @@ function PrincipleCard({ icon, title, color, colorAlt, items, desc, delay }) {
       }} />
 
       {/* Icon */}
-      <motion.div
-        animate={{ rotate: [0, 5, -5, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay }}
-        style={{
-          width: 52, height: 52, borderRadius: 14,
-          background: `linear-gradient(135deg, ${color}33, ${colorAlt}22)`,
-          border: `1px solid ${color}44`,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 22, color, marginBottom: 20,
-        }}
-      >
+      <div style={{
+        width: 52, height: 52, borderRadius: 14,
+        background: `linear-gradient(135deg, ${color}33, ${colorAlt}22)`,
+        border: `1px solid ${color}44`,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontSize: 22, color, marginBottom: 20,
+      }}>
         {icon}
-      </motion.div>
+      </div>
 
       <h3 style={{
         fontFamily: 'var(--font-title)', fontSize: 20, fontWeight: 700,
@@ -155,17 +150,6 @@ function ConnectionLines() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.8 }}
       />
-      {[...Array(6)].map((_, i) => (
-        <motion.circle
-          key={i}
-          cx={`${25 + i * 10}%`} cy="55%"
-          r="1.5"
-          fill="#A855F7"
-          opacity={0}
-          animate={{ opacity: [0, 0.8, 0], cx: [`${25 + i * 10}%`, `${28 + i * 10}%`, `${31 + i * 10}%`] }}
-          transition={{ duration: 3, repeat: Infinity, delay: i * 0.5, ease: 'linear' }}
-        />
-      ))}
     </svg>
   )
 }

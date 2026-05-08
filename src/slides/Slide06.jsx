@@ -8,8 +8,7 @@ const glows = [
 ]
 
 function MobileScreen() {
-  const [activeNav, setActiveNav] = useState(0)
-  const [tapping, setTapping] = useState(null)
+  const activeNav = 0
 
   const navItems = [
     { icon: '⊞', label: 'Inicio' },
@@ -78,19 +77,14 @@ function MobileScreen() {
       {/* Content feed */}
       <div style={{ flex: 1, padding: '0 14px', display: 'flex', flexDirection: 'column', gap: 8, overflowY: 'hidden' }}>
         {cards.map((card, i) => (
-          <motion.div
+          <div
             key={card.title}
-            whileTap={{ scale: 0.96 }}
-            onTapStart={() => setTapping(i)}
-            onTap={() => setTimeout(() => setTapping(null), 300)}
             style={{
               background: 'rgba(255,255,255,0.04)',
-              border: `1px solid ${tapping === i ? card.color + '55' : 'rgba(255,255,255,0.07)'}`,
+              border: '1px solid rgba(255,255,255,0.07)',
               borderRadius: 14, padding: 12,
               display: 'flex', gap: 10, alignItems: 'center',
-              cursor: 'pointer',
-              boxShadow: tapping === i ? `0 4px 20px ${card.color}33` : 'none',
-              transition: 'border-color 0.15s, box-shadow 0.15s',
+              cursor: 'default',
             }}
           >
             <div style={{
@@ -104,42 +98,30 @@ function MobileScreen() {
               <div style={{ color: '#fff', fontSize: 11, fontFamily: 'var(--font-body)', fontWeight: 600, marginBottom: 3 }}>{card.title}</div>
               <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: 9, fontFamily: 'var(--font-body)' }}>{card.subtitle}</div>
             </div>
-            <motion.div
-              whileTap={{ scale: 0.9 }}
-              style={{
-                width: 28, height: 28, borderRadius: '50%',
-                background: `rgba(${i===0?'124,58,237':i===1?'34,211,238':'168,85,247'},0.2)`,
-                border: `1px solid rgba(${i===0?'124,58,237':i===1?'34,211,238':'168,85,247'},0.35)`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                cursor: 'pointer',
-              }}
-            >
+            <div style={{
+              width: 28, height: 28, borderRadius: '50%',
+              background: `rgba(${i===0?'124,58,237':i===1?'34,211,238':'168,85,247'},0.2)`,
+              border: `1px solid rgba(${i===0?'124,58,237':i===1?'34,211,238':'168,85,247'},0.35)`,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
               <span style={{ fontSize: 10 }}>▶</span>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         ))}
 
         {/* Player mini */}
-        <motion.div
-          animate={{ y: [0, -3, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          style={{
-            marginTop: 4,
-            background: 'rgba(124,58,237,0.15)',
-            border: '1px solid rgba(124,58,237,0.3)',
-            borderRadius: 14, padding: '10px 12px',
-            display: 'flex', alignItems: 'center', gap: 10,
-          }}
-        >
+        <div style={{
+          marginTop: 4,
+          background: 'rgba(124,58,237,0.15)',
+          border: '1px solid rgba(124,58,237,0.3)',
+          borderRadius: 14, padding: '10px 12px',
+          display: 'flex', alignItems: 'center', gap: 10,
+        }}>
           <div style={{ width: 32, height: 32, borderRadius: 8, background: 'linear-gradient(135deg,#7C3AED,#22D3EE)', flexShrink: 0 }} />
           <div style={{ flex: 1 }}>
             <div style={{ color: '#fff', fontSize: 10, fontFamily: 'var(--font-body)', fontWeight: 600, marginBottom: 4 }}>Reproduciendo ahora</div>
             <div style={{ height: 3, background: 'rgba(255,255,255,0.1)', borderRadius: 2 }}>
-              <motion.div
-                style={{ height: '100%', background: 'linear-gradient(90deg,#7C3AED,#22D3EE)', borderRadius: 2 }}
-                animate={{ width: ['0%', '100%'] }}
-                transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
-              />
+              <div style={{ height: '100%', width: '45%', background: 'linear-gradient(90deg,#7C3AED,#22D3EE)', borderRadius: 2 }} />
             </div>
           </div>
           <div style={{ display: 'flex', gap: 6 }}>
@@ -147,7 +129,7 @@ function MobileScreen() {
               <div key={i} style={{ width: 22, height: 22, borderRadius: '50%', background: 'rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 8, color: '#fff' }}>{ctrl}</div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Bottom navigation */}
@@ -158,34 +140,23 @@ function MobileScreen() {
         paddingBottom: 6,
       }}>
         {navItems.map((item, i) => (
-          <motion.div
+          <div
             key={item.label}
-            onClick={() => setActiveNav(i)}
-            whileTap={{ scale: 0.85 }}
-            style={{
-              flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
-              cursor: 'pointer',
-            }}
+            style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, cursor: 'default' }}
           >
             {i === activeNav && (
-              <motion.div
-                layoutId="nav-indicator"
-                style={{
-                  position: 'absolute', width: 32, height: 3, background: '#A855F7',
-                  borderRadius: '0 0 3px 3px', top: 0,
-                  boxShadow: '0 0 8px rgba(168,85,247,0.8)',
-                }}
-              />
+              <div style={{
+                position: 'absolute', width: 32, height: 3, background: '#A855F7',
+                borderRadius: '0 0 3px 3px', top: 0,
+                boxShadow: '0 0 8px rgba(168,85,247,0.8)',
+              }} />
             )}
-            <motion.span
-              animate={{ scale: i === activeNav ? 1.15 : 1 }}
-              style={{ fontSize: 15, color: i === activeNav ? '#C084FC' : 'rgba(255,255,255,0.3)' }}
-            >{item.icon}</motion.span>
+            <span style={{ fontSize: 15, color: i === activeNav ? '#C084FC' : 'rgba(255,255,255,0.3)' }}>{item.icon}</span>
             <span style={{
               fontSize: 7, fontFamily: 'var(--font-body)', fontWeight: 500,
               color: i === activeNav ? '#C084FC' : 'rgba(255,255,255,0.25)',
             }}>{item.label}</span>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>

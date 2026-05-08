@@ -1,5 +1,4 @@
-import { motion, useMotionValue, useTransform } from 'framer-motion'
-import { useState } from 'react'
+import { motion } from 'framer-motion'
 import BackgroundSystem from '../components/BackgroundSystem'
 
 const glows = [
@@ -14,8 +13,7 @@ function SidebarItem({ icon, label, active }) {
       padding: '8px 12px', borderRadius: 8,
       background: active ? 'rgba(124,58,237,0.2)' : 'transparent',
       border: `1px solid ${active ? 'rgba(124,58,237,0.3)' : 'transparent'}`,
-      cursor: 'pointer',
-      transition: 'all 0.2s ease',
+      cursor: 'default',
     }}>
       <div style={{
         width: 16, height: 16, borderRadius: 4,
@@ -45,8 +43,6 @@ function MiniChart({ color, data }) {
 }
 
 function WebDashboard() {
-  const [hovered, setHovered] = useState(null)
-
   const cards = [
     { id: 0, label: 'Usuarios activos', value: '24.8K', change: '+12%', color: '#7C3AED', data: [6,8,5,9,7,11,10,13,12,15] },
     { id: 1, label: 'Sesiones', value: '142K', change: '+8%', color: '#22D3EE', data: [10,8,12,9,14,11,16,13,18,15] },
@@ -94,18 +90,12 @@ function WebDashboard() {
         {/* Analytics cards */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 10 }}>
           {cards.map(card => (
-            <motion.div
+            <div
               key={card.id}
-              onHoverStart={() => setHovered(card.id)}
-              onHoverEnd={() => setHovered(null)}
-              animate={{ y: hovered === card.id ? -4 : 0 }}
-              transition={{ duration: 0.2 }}
               style={{
                 background: 'rgba(255,255,255,0.04)',
-                border: `1px solid ${hovered === card.id ? card.color + '44' : 'rgba(255,255,255,0.07)'}`,
+                border: '1px solid rgba(255,255,255,0.07)',
                 borderRadius: 12, padding: '12px 14px',
-                boxShadow: hovered === card.id ? `0 8px 24px ${card.color}22` : 'none',
-                transition: 'border-color 0.2s, box-shadow 0.2s',
                 cursor: 'default',
               }}
             >
@@ -115,7 +105,7 @@ function WebDashboard() {
               </div>
               <div style={{ color: '#fff', fontSize: 18, fontFamily: 'var(--font-title)', fontWeight: 700, marginBottom: 10 }}>{card.value}</div>
               <MiniChart color={card.color} data={card.data} />
-            </motion.div>
+            </div>
           ))}
         </div>
 
@@ -293,15 +283,9 @@ export default function Slide05() {
           transition={{ delay: 0.2, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
           style={{ flex: 1, height: '72vh', maxHeight: 520, minHeight: 380 }}
         >
-          <motion.div
-            animate={{ y: [0, -8, 0], rotateX: [0, 1, 0], rotateY: [0, -1.5, 0] }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-            style={{ width: '100%', height: '100%' }}
-          >
-            <BrowserFrame>
-              <WebDashboard />
-            </BrowserFrame>
-          </motion.div>
+          <BrowserFrame>
+            <WebDashboard />
+          </BrowserFrame>
         </motion.div>
       </div>
     </div>

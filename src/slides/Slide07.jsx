@@ -38,19 +38,17 @@ function DesktopWorkspace() {
           display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '12px 0', gap: 6,
         }}>
           {['▶', '◈', '⬡', '◆', '⊞', '◎', '⊕'].map((icon, i) => (
-            <motion.div
+            <div
               key={i}
-              whileHover={{ background: 'rgba(124,58,237,0.3)' }}
               style={{
                 width: 28, height: 28, borderRadius: 6,
                 background: i === 0 ? 'rgba(124,58,237,0.25)' : 'rgba(255,255,255,0.04)',
                 border: `1px solid ${i === 0 ? 'rgba(124,58,237,0.4)' : 'rgba(255,255,255,0.06)'}`,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 color: i === 0 ? '#A855F7' : 'rgba(255,255,255,0.3)',
-                fontSize: 10, cursor: 'pointer',
-                transition: 'all 0.15s ease',
+                fontSize: 10, cursor: 'default',
               }}
-            >{icon}</motion.div>
+            >{icon}</div>
           ))}
         </div>
 
@@ -125,7 +123,7 @@ function DesktopWorkspace() {
               color: i === 0 ? '#A855F7' : 'rgba(255,255,255,0.3)',
               fontSize: 8, fontFamily: 'var(--font-body)', fontWeight: 600,
               borderBottom: i === 0 ? '1px solid rgba(168,85,247,0.4)' : 'none',
-              paddingBottom: 4, letterSpacing: '0.06em', cursor: 'pointer',
+              paddingBottom: 4, letterSpacing: '0.06em', cursor: 'default',
             }}>{tab}</span>
           ))}
 
@@ -175,7 +173,7 @@ function DesktopWorkspace() {
             <span key={tab} style={{
               color: i === 0 ? '#A855F7' : 'rgba(255,255,255,0.3)',
               fontSize: 8, fontFamily: 'var(--font-body)', fontWeight: 600,
-              cursor: 'pointer', padding: '2px 6px',
+              cursor: 'default', padding: '2px 6px',
               background: i === 0 ? 'rgba(124,58,237,0.15)' : 'transparent',
               borderRadius: 4,
             }}>{tab}</span>

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
 import BackgroundSystem from '../components/BackgroundSystem'
 
 const glows = [
@@ -156,7 +155,7 @@ function SpotifyMobile({ isActive }) {
   )
 }
 
-function DeviceCard({ type, children, delay, isHovered, onHover }) {
+function DeviceCard({ type, children, delay }) {
   const sizes = {
     desktop: { width: 360, height: 260, label: 'Desktop' },
     tablet: { width: 240, height: 300, label: 'Tablet' },
@@ -169,79 +168,29 @@ function DeviceCard({ type, children, delay, isHovered, onHover }) {
       initial={{ opacity: 0, y: 50, filter: 'blur(16px)' }}
       animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
       transition={{ delay, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-      onHoverStart={onHover}
-      onHoverEnd={() => {}}
-      style={{
-        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
-        cursor: 'default',
-      }}
+      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, cursor: 'default' }}
     >
-      <div
-        style={{
-          width: s.width, height: s.height,
-          borderRadius: type === 'mobile' ? 24 : 12,
-          border: `1.5px solid ${isHovered ? 'rgba(124,58,237,0.7)' : 'rgba(124,58,237,0.35)'}`,
-          background: '#070A1C',
-          overflow: 'hidden',
-          boxShadow: isHovered
-            ? '0 30px 80px rgba(124,58,237,0.5)'
-            : '0 20px 60px rgba(124,58,237,0.25)',
-          transition: 'box-shadow 0.3s, border-color 0.3s',
-        }}
-      >
+      <div style={{
+        width: s.width, height: s.height,
+        borderRadius: type === 'mobile' ? 24 : 12,
+        border: '1.5px solid rgba(124,58,237,0.35)',
+        background: '#070A1C',
+        overflow: 'hidden',
+        boxShadow: '0 20px 60px rgba(124,58,237,0.25)',
+      }}>
         {children}
       </div>
-      <span style={{
-        fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 500,
-        color: isHovered ? '#C084FC' : 'rgba(255,255,255,0.35)',
-        transition: 'color 0.3s',
-      }}>{s.label}</span>
+      <span style={{ fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 500, color: 'rgba(255,255,255,0.35)' }}>{s.label}</span>
     </motion.div>
   )
 }
 
 export default function Slide09() {
-  const [hovered, setHovered] = useState(null)
-  const [syncPulse, setSyncPulse] = useState(false)
-
-  useEffect(() => {
-    const t = setInterval(() => {
-      setSyncPulse(true)
-      setTimeout(() => setSyncPulse(false), 1000)
-    }, 5000)
-    return () => clearInterval(t)
-  }, [])
 
   return (
     <div className="slide">
       <BackgroundSystem glows={glows} />
 
-      {/* Connection lines between devices */}
-      <svg style={{ position:'absolute',inset:0,width:'100%',height:'100%',pointerEvents:'none',zIndex:5 }}>
-        <motion.line x1="28%" y1="55%" x2="48%" y2="60%"
-          stroke="rgba(124,58,237,0.2)" strokeWidth="1" strokeDasharray="6 4"
-          animate={{ opacity: syncPulse ? [0.2,0.8,0.2] : 0.2 }}
-          transition={{ duration: 1 }}
-        />
-        <motion.line x1="73%" y1="55%" x2="52%" y2="60%"
-          stroke="rgba(34,211,238,0.2)" strokeWidth="1" strokeDasharray="6 4"
-          animate={{ opacity: syncPulse ? [0.2,0.8,0.2] : 0.2 }}
-          transition={{ duration: 1, delay: 0.2 }}
-        />
-        {/* Traveling particles */}
-        {[...Array(4)].map((_, i) => (
-          <motion.circle key={i} r="2.5" fill="#A855F7" opacity={0}
-            animate={{ opacity:[0,0.8,0], cx:['28%','48%'], cy:['55%','60%'] }}
-            transition={{ duration:2, repeat:Infinity, delay:i*0.5, ease:'linear' }}
-          />
-        ))}
-        {[...Array(4)].map((_, i) => (
-          <motion.circle key={`r${i}`} r="2" fill="#22D3EE" opacity={0}
-            animate={{ opacity:[0,0.7,0], cx:['73%','52%'], cy:['55%','60%'] }}
-            transition={{ duration:2, repeat:Infinity, delay:i*0.5+0.25, ease:'linear' }}
-          />
-        ))}
-      </svg>
 
       <div style={{
         position:'relative',zIndex:10,width:'100%',height:'100%',
@@ -282,33 +231,26 @@ export default function Slide09() {
 
         {/* Devices */}
         <div style={{ display:'flex',gap:24,alignItems:'flex-end' }}>
-          <DeviceCard type="desktop" delay={0.3} isHovered={hovered==='desktop'} onHover={() => setHovered('desktop')}>
+          <DeviceCard type="desktop" delay={0.3}>
             <SpotifyDesktop />
           </DeviceCard>
-          <DeviceCard type="tablet" delay={0.5} isHovered={hovered==='tablet'} onHover={() => setHovered('tablet')}>
+          <DeviceCard type="tablet" delay={0.5}>
             <SpotifyTablet />
           </DeviceCard>
-          <DeviceCard type="mobile" delay={0.7} isHovered={hovered==='mobile'} onHover={() => setHovered('mobile')}>
+          <DeviceCard type="mobile" delay={0.7}>
             <SpotifyMobile />
           </DeviceCard>
         </div>
 
         {/* Sync pulse label */}
-        <motion.div
-          animate={{ opacity: syncPulse ? 1 : 0.4 }}
-          style={{
-            display:'flex',alignItems:'center',gap:8,
-            background:'rgba(124,58,237,0.1)',border:'1px solid rgba(124,58,237,0.25)',
-            borderRadius:100,padding:'5px 16px',
-          }}
-        >
-          <motion.div
-            style={{ width:6,height:6,borderRadius:'50%',background:'#A855F7' }}
-            animate={{ scale: syncPulse ? [1,1.6,1] : 1, opacity: syncPulse ? [1,0.4,1] : 1 }}
-            transition={{ duration:1 }}
-          />
+        <div style={{
+          display:'flex',alignItems:'center',gap:8,
+          background:'rgba(124,58,237,0.1)',border:'1px solid rgba(124,58,237,0.25)',
+          borderRadius:100,padding:'5px 16px',
+        }}>
+          <div style={{ width:6,height:6,borderRadius:'50%',background:'#A855F7' }} />
           <span style={{ color:'rgba(255,255,255,0.5)',fontSize:11,fontFamily:'var(--font-body)' }}>Experiencia sincronizada entre plataformas</span>
-        </motion.div>
+        </div>
       </div>
     </div>
   )

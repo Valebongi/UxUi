@@ -311,7 +311,7 @@ export default function Slide08() {
                 }}
                 style={{
                   padding: '6px 16px', borderRadius: 8,
-                  border: '1px solid', cursor: 'pointer',
+                  border: '1px solid', cursor: 'default',
                   fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 600,
                   display: 'flex', alignItems: 'center', gap: 6,
                 }}

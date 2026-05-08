@@ -25,7 +25,6 @@ function MinimalDevice({ type, delay }) {
       <motion.div
         animate={{ y: [0, -6, 0] }}
         transition={{ duration: 5 + delay * 2, repeat: Infinity, ease: 'easeInOut', delay }}
-        whileHover={{ scale: 1.15 }}
         style={{ cursor: 'default' }}
       >
         <svg width={s.w} height={s.h} viewBox={`0 0 ${s.w} ${s.h}`}>

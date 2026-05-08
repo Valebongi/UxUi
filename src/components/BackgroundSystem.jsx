@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import { useRef, useEffect } from 'react'
 
 function NoiseOverlay() {
@@ -29,16 +28,13 @@ function NoiseOverlay() {
   )
 }
 
-// Simplified: only scale+opacity, no x/y movement (much cheaper on GPU)
-function GlowBlob({ color, x, y, size, opacity, duration, delay = 0 }) {
+function GlowBlob({ color, x, y, size, opacity }) {
   return (
-    <motion.div
+    <div
       style={{
         position: 'absolute',
-        left: x,
-        top: y,
-        width: size,
-        height: size,
+        left: x, top: y,
+        width: size, height: size,
         borderRadius: '50%',
         background: color,
         filter: 'blur(110px)',
@@ -46,23 +42,11 @@ function GlowBlob({ color, x, y, size, opacity, duration, delay = 0 }) {
         mixBlendMode: 'screen',
         pointerEvents: 'none',
         zIndex: 0,
-        willChange: 'transform, opacity',
-      }}
-      animate={{
-        scale: [1, 1.06, 0.97, 1],
-        opacity: [opacity, opacity * 1.2, opacity * 0.85, opacity],
-      }}
-      transition={{
-        duration,
-        delay,
-        repeat: Infinity,
-        ease: 'easeInOut',
       }}
     />
   )
 }
 
-// Static SVG curves — no expensive path morphing
 function FloatingCurves() {
   return (
     <svg
@@ -72,44 +56,21 @@ function FloatingCurves() {
       }}
       preserveAspectRatio="none"
     >
-      <motion.g
-        animate={{ translateY: [0, -8, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-        style={{ willChange: 'transform' }}
-      >
-        <path
-          d="M -100 400 Q 400 100 900 500 Q 1400 900 1920 300"
-          stroke="rgba(255,255,255,0.5)"
-          strokeWidth="0.8"
-          fill="none"
-        />
-        <path
-          d="M -100 700 Q 500 300 1000 700 Q 1500 1100 1920 600"
-          stroke="rgba(255,255,255,0.4)"
-          strokeWidth="0.6"
-          fill="none"
-        />
-      </motion.g>
-      <motion.g
-        animate={{ translateY: [0, 10, 0] }}
-        transition={{ duration: 26, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
-        style={{ willChange: 'transform' }}
-      >
-        <path
-          d="M 300 -50 Q 600 300 400 700 Q 200 1100 600 1150"
-          stroke="rgba(168,85,247,0.25)"
-          strokeWidth="0.7"
-          fill="none"
-        />
-      </motion.g>
+      <g>
+        <path d="M -100 400 Q 400 100 900 500 Q 1400 900 1920 300" stroke="rgba(255,255,255,0.5)" strokeWidth="0.8" fill="none" />
+        <path d="M -100 700 Q 500 300 1000 700 Q 1500 1100 1920 600" stroke="rgba(255,255,255,0.4)" strokeWidth="0.6" fill="none" />
+      </g>
+      <g>
+        <path d="M 300 -50 Q 600 300 400 700 Q 200 1100 600 1150" stroke="rgba(168,85,247,0.25)" strokeWidth="0.7" fill="none" />
+      </g>
     </svg>
   )
 }
 
 export default function BackgroundSystem({ glows, noLines = false }) {
   const defaultGlows = [
-    { color: '#7C3AED', x: '-10%', y: '-15%', size: '60vw', opacity: 0.18, duration: 20 },
-    { color: '#22D3EE', x: '60%', y: '50%', size: '50vw', opacity: 0.12, duration: 25, delay: 5 },
+    { color: '#7C3AED', x: '-10%', y: '-15%', size: '60vw', opacity: 0.18 },
+    { color: '#22D3EE', x: '60%', y: '50%', size: '50vw', opacity: 0.12 },
   ]
   const activeGlows = glows || defaultGlows
 
